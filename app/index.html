@@ -1,0 +1,46 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pouchdb/6.2.0/pouchdb.min.js"></script>
+    <script>
+      var local_db = new PouchDB('local_ecommerce', {
+        auto_compaction: true,
+        revs_limit: 3
+      });
+      var remote_db = new PouchDB('http://localhost:4984/ecommerce/', {
+        auth: {
+          username: 'Domenic81',
+          password: 'pgid_Tubn0qoEtZ'
+        },
+        skip_setup: true
+      });
+      var replicate = PouchDB.sync(local_db, remote_db, {
+  live: true,
+  retry: true
+}).on('change', function (info) {
+  // handle change
+}).on('paused', function (err) {
+  // replication paused (e.g. replication up to date, user went offline)
+}).on('active', function () {
+  // replicate resumed (e.g. new changes replicating, user went back online)
+}).on('denied', function (err) {
+  // a document failed to replicate (e.g. due to permissions)
+}).on('complete', function (info) {
+  // handle complete
+}).on('error', function (err) {
+  // handle error
+});
+    </script>
+  </head>
+  <body>
+
+    <!-- Add your site or application content here -->
+    <p>Hello world! This is HTML5 Boilerplate.</p>
+
+  </body>
+</html>

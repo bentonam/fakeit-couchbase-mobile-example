@@ -1,0 +1,29 @@
+{
+  "interface": "0.0.0.0:4984",
+  "adminInterface": "0.0.0.0:4985",
+  "log": ["CRUD+", "REST+", "Changes+", "Attach+"],
+  "CORS": {
+    "Origin":[
+      "http://localhost:8000",
+      "*"
+    ],
+    "LoginOrigin":[
+      "http://localhost:8000",
+      "*"
+    ],
+    "Headers":["Content-Type", "Authorization"],
+    "MaxAge": 1728000
+  },
+  "databases": {
+    "ecommerce": {
+      "server": "http://fakeit-couchbase:8091",
+      "bucket": "ecommerce",
+      "users": {
+        "GUEST": {
+          "disabled": false
+        }
+      },
+      "sync": "function(doc, oldDoc) { channel(doc.channels); }"
+    }
+  }
+}

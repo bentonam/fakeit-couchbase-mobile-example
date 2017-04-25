@@ -1,0 +1,21 @@
+version: '2'
+services:
+  fakeit-couchbase:
+    build:
+      context: ./.docker/couchbase/
+    container_name: fakeit-couchbase
+    ports:
+      - "8091-8094:8091-8094"
+      - "11210:11210"
+    volumes:
+      - ./:/app
+  fakeit-syncgatway:
+    build:
+      context: ./.docker/sync-gateway/
+    container_name: fakeit-syncgateway
+    depends_on:
+      - fakeit-couchbase
+    ports:
+      - "4984-4985:4984-4985"
+    volumes:
+      - ./:/app
