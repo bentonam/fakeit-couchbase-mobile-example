@@ -1,0 +1,18 @@
+{
+  "name": "fakeit-couchbase-mobile-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/bentonam/fakeit-couchbase-mobile-example.git",
+  "author": "Tyler Benton <tjbenton21@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "fakeit": "^1.0.7",
+    "http-server": "^0.9.0"
+  },
+  "scripts": {
+    "docker": "docker-compose down -v && docker-compose up -d --build",
+    "user": "curl --silent --show-error -H 'Content-Type: application/json; charset=UTF-8' -H 'Content-type: application/json' -X PUT -d '{\"name\":\"Testing\",\"password\":\"testing\",\"admin_channels\":[\"channel-user-20\", \"channel-products\"]}' 'http://localhost:4985/ecommerce/_user/Testing'",
+    "fake-data": "fakeit sync-gateway --verbose --server http://localhost:4984 --bucket ecommerce models",
+    "start": "http-server app -p 8000"
+  }
+}
