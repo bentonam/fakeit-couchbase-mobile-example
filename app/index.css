@@ -1,0 +1,88 @@
+html, body, #app {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+#app {
+  flex-flow: column nowrap;
+}
+.c-types {
+  border-bottom: 1px solid #ccc;
+  min-height: 43px;
+}
+.c-type {
+  display: inline-block;
+  padding: 0.75em;
+}
+.c-page {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+}
+.c-data {
+  flex: 0.5;
+  order: -1;
+  overflow: scroll;
+}
+
+.c-items {
+  flex: 0.5;
+  overflow: scroll;
+  position: relative;
+  box-shadow: inset -17px 0 #2d2d2d;
+}
+
+
+.c-item {
+  display: block;
+  padding: 0.5em;
+  position: relative;
+  margin-right: 17px;
+}
+.c-item.is-selected {
+  background: #ccc;
+  transition-delay: 0s !important;
+}
+.c-item.is-selected:after {
+  background: #ccc;
+  content: '';
+  height: 24px;
+  margin-top: -12px;
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: rotate(45deg);
+  width: 24px;
+}
+
+pre, code {
+  margin: 0;
+  height: 100%;
+}
+
+
+.list-enter-active, .list-leave-active {
+  transition: all 1s, background 0s;
+}
+.list-enter, .list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+
+@media (min-width: 800px) {
+  .c-page {
+    flex-flow: row nowrap;
+  }
+  .c-data {
+    order: 1;
+  }
+}
