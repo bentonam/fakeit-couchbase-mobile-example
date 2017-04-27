@@ -2,8 +2,8 @@ name: Users
 type: object
 key: _id
 data:
-  min: 1000
-  max: 2000
+  min: 100
+  max: 200
   inputs: ./countries.json
 properties:
   _id:

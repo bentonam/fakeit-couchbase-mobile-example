@@ -5,8 +5,8 @@ data:
   dependencies:
     - products.yaml
     - users.yaml
-  min: 5000
-  max: 6000
+  min: 300
+  max: 500
 properties:
   _id:
     type: string

@@ -2,8 +2,8 @@ name: Products
 type: object
 key: _id
 data:
-  min: 500
-  max: 1000
+  min: 50
+  max: 100
   inputs:
     - ./categories.csv
   pre_build: globals.current_category = faker.random.arrayElement(inputs.categories);
