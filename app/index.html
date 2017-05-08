@@ -1,0 +1,59 @@
+<!doctype html>
+<html class="no-js" lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Fakeit</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/pouchdb@6.2.0/dist/pouchdb.min.js"></script> <!-- load pouchdb  -->
+    <script src="https://unpkg.com/vue@2.2.6/dist/vue.js"></script> <!-- load vue -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script> <!-- load default version of highlight.js -->
+    <script src="https://unpkg.com/vue-highlight.js@1.1.0/dist/vue-highlight.min.js"></script> <!-- simple highlight.js vue component -->
+    <link rel="stylesheet" href="https://unpkg.com/highlight.js@9.11.0/styles/tomorrow-night-eighties.css"> <!-- load highlight.js syntax styles -->
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <div id="app">
+      <div class="c-types">
+        <span class="c-type">Document types</span>
+        <label class="c-type" v-for="(type, i) of types" :key="type" :class="{ 'is-selected': type === current_type || i === 0 }">
+          <input v-if="i === 0" type="radio" v-model='current_type' :value="type" name="type">
+          <input v-else type="radio" v-model='current_type' :value="type" name="type">
+          {{type}}
+        </label>
+      </div>
+
+      <div class="c-page">
+        <div class="c-items">
+          <p class="c-item">Documents</p>
+          <transition-group
+            name="list"
+            tag="div"
+            mode="out-in"
+            :duration="{ enter: 1000, leave: 10 }"
+            @after-enter="removeStyle">
+            <label
+              class="c-item"
+              v-for="(item, i) of items"
+              :key="item"
+              :class="{ 'is-selected': item === id }"
+              :style="{ transitionDelay: Math.min(i * 50, 1000) + 'ms' }">
+              <input type="radio" v-model='id' :value="item" name="id">
+              {{item}}
+            </label>
+          </transition-group>
+        </div>
+
+        <div class="c-data">
+          <highlight-code lang="json" :code="current"></highlight-code>
+        </div>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
+
+
+
